@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Sophie ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #ff9ec0, #ff5fa2, #1a0b1f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* glowing animated background */
+    .glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.1), transparent 35%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.08), transparent 40%);
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* main card */
+    .card {
+      width: min(900px, 92vw);
+      height: min(85vh, 850px);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 25px;
+      padding: 25px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      opacity: 0.8;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .letter {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      line-height: 1.9;
+      font-size: 1.05rem;
+      white-space: pre-wrap;
+    }
+
+    /* hearts floating */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      animation: rise linear forwards;
+      opacity: 0.6;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+
+  <div class="card">
+    <h1>Dear Sophie ❤️</h1>
+
+    <div class="letter" id="letter"></div>
+  </div>
+
+  <script>
+    const message = `Dear Sophie,
+I honestly don't even know where to start because there are so many things I want to tell you. Every time I sit down to write something for you, I end up realizing that no matter how many words I use, it never feels like enough. There will never be enough pages, enough letters, or enough words to explain how much you mean to me.
+
+You have become such a huge part of my life that it's hard to remember what life was like before you. Now you're in almost every thought I have. I wake up in the morning and you're one of the first things I think about. I go through my day thinking about you, looking forward to seeing you, texting you, calling you, or hearing about your day. Then somehow, after thinking about you all day, I still end up going to sleep thinking about you too.
+
+It's honestly crazy how much one person can change someone's life.
+
+Before I met you, I never thought I'd be sitting here writing pages and pages about someone. I can barely write an essay without getting bored, but I could genuinely write a whole book about you. A whole library, probably. Every memory we've made together is something I could talk about forever.
+
+One thing I love is how the smallest things remind me of you. It doesn't even have to make sense. Whenever I see a yellow car, I think of you. Whenever I see an orange cone, I think of you. Whenever I hear something funny that I know you'd laugh at, I think of you.
+
+I love calling you before rugby practice. Just hearing your voice before I go out there always makes my day better. I remember when I used to watch your volleyball games before my rugby practices. Even now, whenever I think about those afternoons, they make me smile.
+
+I love baking with you. It’s never really about the baking anyway. It’s about being with you. Somehow even the simplest things become some of my favourite memories when I'm doing them with you.
+
+One of my favourite things is when you paint my left pinky nail. Whenever I miss you, I just look down at my hand and think about you.
+
+Whenever we watch movies together, I never really focus on just the movie. What I remember most is you sitting beside me.
+
+And speaking of that, every time you put your head on my shoulder or we hold hands, I always wish it could last forever.
+
+I love how comfortable I am around you. I can just be me.
+
+You've made me happier than I ever thought I could be.
+
+Sometimes I sit there and think about how lucky I am that out of all the people in the world, I get to call you my girlfriend.
+
+When I tell you I love you, I mean it every single time.
+
+There are so many memories that I love… but every single one means so much to me because they were with you.
+
+And the crazy thing is that my favourite memories with you probably haven't even happened yet.
+
+There are still so many things I want to do with you, so many places I want to go with you, and so many memories I want to make with you.
+
+Your heart is safe with me. I promise.
+
+Because you are beautiful.  
+You're gorgeous.  
+You're amazing.  
+You're everything I could have ever asked for and so much more.
+
+Thank you for everything.
+
+Forever and always, Jack ❤️`;
+
+    const el = document.getElementById("letter");
+    let i = 0;
+
+    function type() {
+      if (i < message.length) {
+        el.textContent += message[i];
+        i++;
+        setTimeout(type, 18);
+      }
+    }
+
+    type();
+
+    // floating hearts
+    function heart() {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = Math.random() > 0.5 ? "❤️" : "💗";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (12 + Math.random() * 20) + "px";
+      h.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(h);
+
+      setTimeout(() => h.remove(), 8000);
+    }
+
+    setInterval(heart, 250);
+  </script>
+</body>
+</html>
